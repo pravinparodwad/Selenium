@@ -41,9 +41,9 @@ public class BaseCarOhBarTest {
 		
 		UiElement submitButton = automator.findUiElement("id=send");
 		//submitButton.clickAndVerify("xpath=//div[@class='fis-sidebar-title']/span[.='Navigation']");
-		submitButton.click();
+		submitButton.clickAndVerifyMessage("Welcome to Dashboard");
 		
-		getAutomator().waitUntillMessageAppears(By.xpath("xpath=//h4[.='Welcome to Dashboard']"));
+		//getAutomator().waitUntillMessageAppears(By.xpath("xpath=//h4[.='Welcome to Dashboard']"));
 		
 		System.out.println("Successful");
 		

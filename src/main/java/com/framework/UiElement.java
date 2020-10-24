@@ -1,5 +1,6 @@
 package com.framework;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.openqa.selenium.By;
@@ -35,7 +36,7 @@ public class UiElement {
 	
 	public void clickAndVerify(String locatorToVerify) {
 		this.click();
-		this.automator.findUiElement(locatorToVerify);
+		assertTrue((this.automator.findUiElement(locatorToVerify)) != null);
 	}
 	
 	public void submit() {
@@ -44,7 +45,7 @@ public class UiElement {
 	
 	public void submitAndVerify(By by) {
 		this.submit();
-		this.automator.waitUntilPresent(by);
+		assertTrue((this.automator.waitUntilPresent(by) != null));
 	}
 
 	public String getAttrValue(String attr) {
@@ -90,7 +91,7 @@ public class UiElement {
 
 	public void clickAndVerifyMessage(String messageToVerify) {
 		this.click();
-		this.automator.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]"));
+		assertTrue((this.automator.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
 		
 	}
 
