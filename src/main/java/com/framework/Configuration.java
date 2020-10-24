@@ -9,9 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public enum Configuration {
 	INSTANCE;
 	
-	private String APP_URL = "http://localhost:8082/ipp/";
-	private String USER = "AdminTech";
-	private String PWD = "AdminTech";
+	//private String APP_URL = "http://localhost:8082/ipp/";
+	private String APP_URL = "https://omsoftware.org/carse/manage";
+	private String USER = "carse@admin.com";
+	private String PWD = "123";
 	
 	private String ROOT_DIR = System.getProperty("user.dir") + File.separator;
 	private String DRIVERS_DIR = ROOT_DIR + "drivers" + File.separator;
