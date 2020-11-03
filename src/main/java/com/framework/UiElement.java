@@ -1,10 +1,11 @@
 package com.framework;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.Assert.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class UiElement {
 	private WebAutomator automator;
@@ -21,7 +22,8 @@ public class UiElement {
 	public void enterText(String text) {
 		this.automator.waitUntilClickable(by);
 		this.element.sendKeys(text);
-		assertEquals(text, element.getAttribute("value"), "Verify text entered in text field.");
+		Assert.assertEquals(text, element.getAttribute("value"), "Verify text entered in text field.");
+
 	}
 	
 	public void clearAndSetText(String text) {
@@ -36,7 +38,7 @@ public class UiElement {
 	
 	public void clickAndVerify(String locatorToVerify) {
 		this.click();
-		assertTrue((this.automator.findUiElement(locatorToVerify)) != null);
+		Assert.assertTrue((this.automator.findUiElement(locatorToVerify)) != null);
 	}
 	
 	public void submit() {
@@ -45,7 +47,7 @@ public class UiElement {
 	
 	public void submitAndVerify(By by) {
 		this.submit();
-		assertTrue((this.automator.waitUntilPresent(by) != null));
+		Assert.assertTrue((this.automator.waitUntilPresent(by) != null));
 	}
 
 	public String getAttrValue(String attr) {
@@ -91,7 +93,7 @@ public class UiElement {
 
 	public void clickAndVerifyMessage(String messageToVerify) {
 		this.click();
-		assertTrue((this.automator.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
+		Assert.assertTrue((this.automator.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
 		
 	}
 

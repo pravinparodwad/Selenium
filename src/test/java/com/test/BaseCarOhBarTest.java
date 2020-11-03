@@ -1,10 +1,10 @@
 package com.test;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+//import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api.AfterAll;
+//import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.TestInstance;
+//import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.openqa.selenium.By;
 
 import com.framework.Browser;
@@ -12,8 +12,10 @@ import com.framework.Configuration;
 import com.framework.InvalidAttributeForUiElement;
 import com.framework.UiElement;
 import com.framework.WebAutomator;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
-@TestInstance(Lifecycle.PER_CLASS)
+//@TestInstance(Lifecycle.PER_CLASS)
 public class BaseCarOhBarTest {
 	private Configuration conf = Configuration.INSTANCE;
 	private WebAutomator automator;
@@ -26,7 +28,7 @@ public class BaseCarOhBarTest {
 		return this.automator;
 	}
 	
-	@BeforeAll
+	@BeforeSuite
 	public void login() throws InvalidAttributeForUiElement {
 		automator = new WebAutomator(Browser.CHROME);
 		
@@ -49,7 +51,7 @@ public class BaseCarOhBarTest {
 		
 	}
 	
-	@AfterAll
+	@AfterSuite
 	public void logout() throws Exception {
 		UiElement logOutImage = this.automator.findUiElement("id=profileDropdown");
 		logOutImage.clickAndVerify(conf.getUserName());

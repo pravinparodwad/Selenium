@@ -1,9 +1,10 @@
 package com.test;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import com.framework.UiElement;
+import org.testng.annotations.Test;
 
 class IntegrationFrameworkTest extends BaseTest{
 

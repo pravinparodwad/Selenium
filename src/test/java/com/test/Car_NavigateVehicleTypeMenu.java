@@ -1,9 +1,10 @@
 package com.test;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 import com.framework.UiElement;
 import com.framework.WebAutomator;
+import org.testng.annotations.Test;
 
 public class Car_NavigateVehicleTypeMenu extends BaseCarOhBarTest {
 	

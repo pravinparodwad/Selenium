@@ -1,6 +1,7 @@
 package com.test;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 class OnlyLoginTest extends BaseTest{
 

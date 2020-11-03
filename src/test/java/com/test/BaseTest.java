@@ -1,10 +1,10 @@
 package com.test;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
+//import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api.AfterAll;
+//import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.TestInstance;
+//import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.openqa.selenium.By;
 
 import com.framework.Browser;
@@ -12,8 +12,11 @@ import com.framework.Configuration;
 import com.framework.InvalidAttributeForUiElement;
 import com.framework.UiElement;
 import com.framework.WebAutomator;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.TestInstance;
 
-@TestInstance(Lifecycle.PER_CLASS)
+//@TestInstance(Lifecycle.PER_CLASS)
 public class BaseTest {
 	private Configuration conf = Configuration.INSTANCE;
 	private WebAutomator automator;
@@ -26,7 +29,7 @@ public class BaseTest {
 		return this.automator;
 	}
 	
-	@BeforeAll
+	@BeforeSuite
 	public void login() throws InvalidAttributeForUiElement {
 		automator = new WebAutomator(Browser.CHROME);
 		
@@ -46,7 +49,7 @@ public class BaseTest {
 		
 	}
 	
-	@AfterAll
+	@AfterSuite
 	public void logout() throws Exception {
 		UiElement logOut = this.automator.findUiElement("xpath=//span[.='Sign Out']/parent::a");
 		logOut.clickAndVerify("xpath=//div[@class='login-title']");
