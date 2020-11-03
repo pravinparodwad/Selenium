@@ -43,7 +43,7 @@ public class BaseCarOhBarTest {
 		
 		UiElement submitButton = automator.findUiElement("id=send");
 		//submitButton.clickAndVerify("xpath=//div[@class='fis-sidebar-title']/span[.='Navigation']");
-		submitButton.clickAndVerifyMessage("Welcome to Dashboard");
+		//submitButton.clickAndVerifyMessage("Welcome to Dashboard");
 		
 		//getAutomator().waitUntillMessageAppears(By.xpath("xpath=//h4[.='Welcome to Dashboard']"));
 		
@@ -53,11 +53,11 @@ public class BaseCarOhBarTest {
 	
 	@AfterSuite
 	public void logout() throws Exception {
-		UiElement logOutImage = this.automator.findUiElement("id=profileDropdown");
+		/*UiElement logOutImage = this.automator.findUiElement("id=profileDropdown");
 		logOutImage.clickAndVerify(conf.getUserName());
 		
 		UiElement logoutButton = this.automator.findUiElement("xpath=//span[.='Log Out']/parent::a");
-		logoutButton.clickAndVerify("xpath=//a[.='CarOhBar']");
+		logoutButton.clickAndVerify("xpath=//a[.='CarOhBar']");*/
 		automator.close();	
 	}
 	
