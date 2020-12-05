@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="CarOhBarAutomationSuite" duration-ms="30484" started-at="2020-12-05T10:23:30 IST" finished-at="2020-12-05T10:24:01 IST">
+    <groups>
+    </groups>
+    <test name="CarOhBarTesting" duration-ms="30484" started-at="2020-12-05T10:23:30 IST" finished-at="2020-12-05T10:24:01 IST">
+      <class name="com.test.FlipkartTC">
+        <test-method status="PASS" signature="LoginToFlipkart()[pri:0, instance:com.test.FlipkartTC@d9345cd]" name="LoginToFlipkart" duration-ms="30420" started-at="2020-12-05T10:23:30 IST" finished-at="2020-12-05T10:24:01 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginToFlipkart -->
+      </class> <!-- com.test.FlipkartTC -->
+    </test> <!-- CarOhBarTesting -->
+  </suite> <!-- CarOhBarAutomationSuite -->
+</testng-results>

@@ -1,6 +1,5 @@
 com\test\BaseCarOhBarTest.class
 com\test\Car_NavigateVehicleTypeMenu.class
+com\test\FlipkartTC.class
 com\test\OnlyLoginTest.class
 com\test\BaseTest.class
-com\test\findElementTest.class
-com\test\IntegrationFrameworkTest.class
