@@ -96,6 +96,4 @@ public class UiElement {
 		Assert.assertTrue((this.automator.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
 		
 	}
-
-
 }

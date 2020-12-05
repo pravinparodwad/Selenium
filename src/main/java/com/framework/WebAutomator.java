@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class WebAutomator {
 	private WebDriver driver;
@@ -125,9 +126,10 @@ public class WebAutomator {
 		this.driver.get(url);
 	}
 
-	public UiElement goToAndVerify(String url, String locatorToVerify) {
+	public void goToAndVerify(String url, String locatorToVerify) {
 		this.goTo(url);
-		return this.findUiElement(locatorToVerify);
+		//return this.findUiElement(locatorToVerify);
+		Assert.assertTrue(this.findUiElement(locatorToVerify) != null);
 	}
 
 	public void close() {
@@ -145,6 +147,10 @@ public class WebAutomator {
 				this.driver.close();
 			}
 		}
+	}
+
+	public void verifyMessage(String messageToVerify) {
+		Assert.assertTrue((this.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
 	}
 
 }

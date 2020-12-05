@@ -3,7 +3,7 @@
 <suite name="CarOhBarAutomationSuite">
     <test name="CarOhBarTesting">
         <classes>
-            <class name="com.test.Car_NavigateVehicleTypeMenu"/>
+            <class name="com.test.FlipkartTC"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

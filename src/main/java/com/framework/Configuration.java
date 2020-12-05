@@ -10,9 +10,9 @@ public enum Configuration {
 	INSTANCE;
 	
 	//private String APP_URL = "http://localhost:8082/ipp/";
-	private String APP_URL = "https://omsoftware.org/carse/manage";
-	private String USER = "carse@admin.com";
-	private String PWD = "123";
+	private String APP_URL = "https://carohbar.com/manage";
+	private String USER = "admin@carohbar.com";
+	private String PWD = "911";
 	
 	private String ROOT_DIR = System.getProperty("user.dir") + File.separator;
 	private String DRIVERS_DIR = ROOT_DIR + "drivers" + File.separator;
