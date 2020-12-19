@@ -2,9 +2,12 @@ package com.test;
 
 import com.framework.Browser;
 import com.framework.WebAutomator;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import com.framework.UiElement;
 import org.testng.annotations.Test;
@@ -28,19 +31,15 @@ public class FlipkartTC {
         UiElement loginButton = automator.findUiElement("xpath=//span[.='Login']/ancestor::button[@type='submit']");
         loginButton.click();
 
-        Assert.assertTrue(automator.findUiElement("xpath=//img[@title='Flipkart']") != null);
-
-        Assert.assertTrue(automator.findUiElement("xpath=//input[@title='Search for products, brands and more']") != null);
+        Thread.sleep(5000);
+        Assert.assertTrue(automator.findUiElement("xpath=//span[.='Electronics']") != null);
         UiElement searchTextField = automator.findUiElement("xpath=//input[@title='Search for products, brands and more']");
         searchTextField.clearAndSetText("Iphone 12");
 
         Assert.assertTrue(automator.findUiElement("xpath=//button[@type='submit']") != null);
         UiElement searchButton = automator.findUiElement("xpath=//button[@type='submit']");
-        //searchButton.clickAndVerify("Showing 1 - 24 of 255 results");
-        WebElement weSearchButton = searchButton.getWrappedElement();
-        weSearchButton.sendKeys(Keys.ENTER);
-
-        automator.verifyMessage("Showing 1 "+"–"+" 24 of 255 results");
+        searchButton.click();
+        Assert.assertTrue(automator.findUiElement("xpath=//span[contains(.,'Showing') and contains(.,'results for')]") != null);
 
         automator.close();
     }

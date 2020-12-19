@@ -1,7 +1,7 @@
-com\framework\WebAutomator$1.class
-com\framework\Browser.class
 com\framework\Configuration.class
+com\framework\InvalidAttributeForUiElement.class
+com\framework\Browser.class
 com\framework\UiElement.class
 com\framework\WebAutomator.class
-com\framework\InvalidAttributeForUiElement.class
 com\framework\OSUtils.class
+com\framework\WebAutomator$1.class

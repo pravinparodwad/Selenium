@@ -150,7 +150,7 @@ public class WebAutomator {
 	}
 
 	public void verifyMessage(String messageToVerify) {
-		Assert.assertTrue((this.waitUntillMessageAppears(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
+		Assert.assertTrue((this.waitUntilClickable(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
 	}
 
 }

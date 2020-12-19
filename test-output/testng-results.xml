@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="15693" started-at="2020-12-19T17:33:09 IST" finished-at="2020-12-19T17:33:24 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="15693" started-at="2020-12-19T17:33:09 IST" finished-at="2020-12-19T17:33:24 IST">
+      <class name="com.test.FlipkartTC">
+        <test-method status="PASS" signature="LoginToFlipkart()[pri:0, instance:com.test.FlipkartTC@53045c6c]" name="LoginToFlipkart" duration-ms="15591" started-at="2020-12-19T17:33:09 IST" finished-at="2020-12-19T17:33:24 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginToFlipkart -->
+      </class> <!-- com.test.FlipkartTC -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
