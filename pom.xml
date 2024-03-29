@@ -9,7 +9,7 @@
 	<description>this is simple automation project</description>
 
 	<properties>
-		<suiteXmlFile>TestNGCarOhBar.xml</suiteXmlFile>
+		<suiteXmlFile>TestNGExecute.xml</suiteXmlFile>
 	</properties>
 	<dependencies>
 

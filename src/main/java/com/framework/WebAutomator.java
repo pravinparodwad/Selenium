@@ -12,145 +12,161 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class WebAutomator {
-	private WebDriver driver;
-	private WebDriverWait waiter;
-	private Configuration conf = Configuration.INSTANCE;
-	private String mainWin;
+    private WebDriver driver;
+    private WebDriverWait waiter;
+    private Configuration conf = Configuration.INSTANCE;
+    private String mainWin;
 
-	public WebAutomator(Browser browser) {
-		switch(browser) {
-		case CHROME:
-			this.driver = this.createChromeDriver();
-			this.driver.manage().window().maximize();
-			break;
-		case FIREFOX:
-			this.driver = this.createFirefoxDriver();
-			this.driver.manage().window().maximize();
-			break;
-		}
-		this.waiter = new WebDriverWait(this.driver, conf.MAX_WAIT);
-		this.mainWin = this.driver.getWindowHandle();
-	}
+    public WebAutomator(Browser browser) {
+        switch (browser) {
+            case CHROME:
+                this.driver = this.createChromeDriver();
+                this.driver.manage().window().maximize();
+                break;
+            case FIREFOX:
+                this.driver = this.createFirefoxDriver();
+                this.driver.manage().window().maximize();
+                break;
+        }
+        this.waiter = new WebDriverWait(this.driver, conf.MAX_WAIT);
+        this.mainWin = this.driver.getWindowHandle();
+    }
 
-	private WebDriver createFirefoxDriver() {
-		System.setProperty("webdriver.gecko.driver", conf.FIREFOX_DRIVER_PATH);	
-		return new FirefoxDriver();
-	}
+    private WebDriver createFirefoxDriver() {
+        System.setProperty("webdriver.gecko.driver", conf.FIREFOX_DRIVER_PATH);
+        return new FirefoxDriver();
+    }
 
-	private WebDriver createChromeDriver() {
-		System.setProperty("webdriver.chrome.driver", conf.CHROME_DRIVER_PATH);	
-		return new ChromeDriver();
-	}
+    private WebDriver createChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", conf.CHROME_DRIVER_PATH);
+        return new ChromeDriver();
+    }
 
-	private void highlightUiElement(UiElement element) {
+    private void highlightUiElement(UiElement element) {
 
-		String originalColour = null;
-		WebElement elementToHighlight = null;
-		elementToHighlight = element.getWrappedElement();
-		try {
-			originalColour = ((WebElement) elementToHighlight).getCssValue("border");
-		} catch (Exception e1) {
-		}
+        String originalColour = null;
+        WebElement elementToHighlight = null;
+        elementToHighlight = element.getWrappedElement();
+        try {
+            originalColour = ((WebElement) elementToHighlight).getCssValue("border");
+        } catch (Exception e1) {
+        }
 
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		try {
-			js.executeScript("arguments[0].style.border = '3px solid "+conf.colourToBlink+"'",  elementToHighlight);
-			Thread.sleep(50);
-			js.executeScript("arguments[0].style.border = '"+originalColour+"'",  elementToHighlight);
-		} catch (Exception e) {
-		}
-	}
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        try {
+            js.executeScript("arguments[0].style.border = '3px solid " + conf.colourToBlink + "'", elementToHighlight);
+            Thread.sleep(50);
+            js.executeScript("arguments[0].style.border = '" + originalColour + "'", elementToHighlight);
+        } catch (Exception e) {
+        }
+    }
 
-	public UiElement findUiElement(String elementLocatorString) {
+    public UiElement findUiElement(String elementLocatorString) {
 
-		UiElement foundElement = null;
-		String[] locatorArr = elementLocatorString.split("=");
+        UiElement foundElement = null;
+        String[] locatorArr = elementLocatorString.split("=");
 
-		String locatorType = null;
-		String locatorvalue = null;
+        String locatorType = null;
+        String locatorvalue = null;
 
-		locatorType = locatorArr[0].toString();
+        locatorType = locatorArr[0].toString();
 
-		switch(locatorType) {
+        switch (locatorType) {
 
-		case "id":
-			locatorvalue = elementLocatorString.replaceFirst("id=", "");
-			foundElement = waitUntilVisible(By.id(locatorvalue));
-			break;
+            case "id":
+                locatorvalue = elementLocatorString.replaceFirst("id=", "");
+                foundElement = waitUntilVisible(By.id(locatorvalue));
+                break;
 
-		case "name":
-			locatorvalue = elementLocatorString.replaceFirst("name=", "");
-			foundElement = waitUntilVisible(By.name(locatorvalue));
-			break;
+            case "name":
+                locatorvalue = elementLocatorString.replaceFirst("name=", "");
+                foundElement = waitUntilVisible(By.name(locatorvalue));
+                break;
 
-		case "xpath":
-			locatorvalue = elementLocatorString.replaceFirst("xpath=", "");
-			foundElement = waitUntilVisible(By.xpath(locatorvalue));
-			break;
+            case "xpath":
+                locatorvalue = elementLocatorString.replaceFirst("xpath=", "");
+                foundElement = waitUntilVisible(By.xpath(locatorvalue));
+                break;
 
-		}
-		return foundElement;
+        }
+        return foundElement;
 
-	}
+    }
 
-	private UiElement wait(ExpectedCondition<WebElement> condition, By by) {
-		UiElement element =  new UiElement(this, this.waiter.until(condition), by);
-		return element;
-	}
+    private UiElement wait(ExpectedCondition<WebElement> condition, By by) {
+        UiElement element = new UiElement(this, this.waiter.until(condition), by);
+        return element;
+    }
 
-	public UiElement waitUntilPresent(By by) {
-		UiElement element =  this.wait(ExpectedConditions.presenceOfElementLocated(by), by);
-		highlightUiElement(element);
-		return element;
-	}
+    private UiElement wait(ExpectedCondition<WebElement> condition) {
+        UiElement element = new UiElement(this, this.waiter.until(condition));
+        return element;
+    }
 
-	public UiElement waitUntilVisible(By by) {
-		UiElement element =  this.wait(ExpectedConditions.visibilityOfElementLocated(by), by);
-		highlightUiElement(element);
-		return element;
-	}
+    public UiElement waitUntilPresent(By by) {
+        UiElement element = this.wait(ExpectedConditions.presenceOfElementLocated(by), by);
+        highlightUiElement(element);
+        return element;
+    }
 
-	public UiElement waitUntilClickable(By by) {
-		UiElement element =  this.wait(ExpectedConditions.elementToBeClickable(by), by);
-		highlightUiElement(element);
-		return element;
-	}
+    public UiElement waitUntilVisible(By by) {
+        UiElement element = this.wait(ExpectedConditions.visibilityOfElementLocated(by), by);
+        highlightUiElement(element);
+        return element;
+    }
 
-	public UiElement waitUntillMessageAppears(By by) {
-		UiElement element =  this.wait(ExpectedConditions.visibilityOfElementLocated(by), by);
-		highlightUiElement(element);
-		return element;
-	}
+    public UiElement waitUntilClickable(By by) {
+        UiElement element = this.wait(ExpectedConditions.elementToBeClickable(by), by);
+        highlightUiElement(element);
+        return element;
+    }
 
-	public void goTo(String url) {
-		this.driver.get(url);
-	}
+    public UiElement waitUntillMessageAppears(By by) {
+        UiElement element = this.wait(ExpectedConditions.visibilityOfElementLocated(by), by);
+        highlightUiElement(element);
+        return element;
+    }
 
-	public void goToAndVerify(String url, String locatorToVerify) {
-		this.goTo(url);
-		//return this.findUiElement(locatorToVerify);
-		Assert.assertTrue(this.findUiElement(locatorToVerify) != null);
-	}
+    public void goTo(String url) {
+        this.driver.get(url);
+    }
 
-	public void close() {
-		this.driver.quit();
-	}
+    public void goToAndVerify(String url, String locatorToVerify) {
+        this.goTo(url);
+        //return this.findUiElement(locatorToVerify);
+        Assert.assertTrue(this.findUiElement(locatorToVerify) != null);
+    }
 
-	public void closeAllWindows() {
-		this.close();
-	}
+    public void close() {
+        this.driver.quit();
+    }
 
-	public void closeNonMainWindows() {
-		for (String handle: this.driver.getWindowHandles()) {
-			if (!this.driver.getWindowHandle().equals(this.mainWin)) {
-				this.driver.switchTo().window(handle);
-				this.driver.close();
-			}
-		}
-	}
+    public void closeAllWindows() {
+        this.close();
+    }
 
-	public void verifyMessage(String messageToVerify) {
-		Assert.assertTrue((this.waitUntilClickable(By.xpath("//*[contains(text(),'"+ messageToVerify +"')]")) != null));
-	}
+    public void closeNonMainWindows() {
+        for (String handle : this.driver.getWindowHandles()) {
+            if (!this.driver.getWindowHandle().equals(this.mainWin)) {
+                this.driver.switchTo().window(handle);
+                this.driver.close();
+            }
+        }
+    }
+
+    public void verifyMessage(String messageToVerify) {
+        Assert.assertTrue((this.waitUntilClickable(By.xpath("//*[contains(text(),'" + messageToVerify + "')]")) != null));
+    }
+
+    public boolean verifyObjectPresent(String elementLocatorString) {
+        try {
+            UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
+            elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
 
 }
