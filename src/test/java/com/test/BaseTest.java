@@ -1,11 +1,6 @@
 package com.test;
-
-//import org.junit.jupiter.api.*;
-//import org.junit.jupiter.api.AfterAll;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.TestInstance;
-//import org.junit.jupiter.api.TestInstance.Lifecycle;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.framework.Browser;
@@ -19,47 +14,23 @@ import org.testng.annotations.TestInstance;
 
 //@TestInstance(Lifecycle.PER_CLASS)
 public class BaseTest {
-    private Configuration conf = Configuration.INSTANCE;
+    private static final Logger Log = LogManager.getLogger(BaseTest.class);
+    public Configuration conf = Configuration.INSTANCE;
     private WebAutomator automator;
-
     protected Configuration getConf() {
+        Log.info("Getting configuration object");
         return conf;
     }
-
     protected WebAutomator getAutomator() {
+        Log.info("Inside getter of WebAutomator");
         return this.automator;
     }
-
+    protected void setAutomator(WebAutomator automator) {
+        Log.info("Inside setter of WebAutomator");
+        this.automator = automator;
+    }
     public String usernameField = "name=username";
     public String passwordField = "name=password";
     public String loginButton = "xpath=//input[@type='submit' and @value='Log In']";
     public String logoutLink = "xpath=//a[.='Log Out']";
-
-    @BeforeSuite
-    public void login() throws InvalidAttributeForUiElement {
-        automator = new WebAutomator(Browser.CHROME);
-
-        // Login
-        automator.goToAndVerify(conf.getAPP_URL(), usernameField);
-
-        UiElement userNameField = automator.findUiElement(usernameField);
-        userNameField.enterText(conf.getUserName());
-
-        UiElement pwdField = automator.findUiElement(passwordField);
-        pwdField.enterText(conf.getPwd());
-
-        UiElement submitButton = automator.findUiElement(loginButton);
-//		submitButton.clickAndVerify("xpath=//div[@class='fis-sidebar-title']/span[.='Navigation']");
-        submitButton.click();
-        System.out.println("Successful");
-    }
-
-    @AfterSuite
-    public void logout() throws Exception {
-        UiElement logOut = this.automator.findUiElement(logoutLink);
-//		logOut.clickAndVerify("xpath=//div[@class='login-title']");
-        logOut.click();
-        automator.close();
-    }
-
 }
