@@ -1,5 +1,6 @@
 package com.framework;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -39,12 +40,26 @@ public class WebAutomator {
     }
 
     private WebDriver createFirefoxDriver() {
-        System.setProperty("webdriver.gecko.driver", conf.FIREFOX_DRIVER_PATH);
+//        System.setProperty("webdriver.gecko.driver", conf.FIREFOX_DRIVER_PATH);
+        Log.info("Setting up firefox browser using web driver manager");
+        try {
+            WebDriverManager.firefoxdriver().setup();
+        } catch (Exception e) {
+            Log.error("Exception occurred while setting up firefox driver with web driver manager");
+            Log.error(e.getMessage());
+        }
         return new FirefoxDriver();
     }
 
     private WebDriver createChromeDriver() {
-        System.setProperty("webdriver.chrome.driver", conf.CHROME_DRIVER_PATH);
+//        System.setProperty("webdriver.chrome.driver", conf.CHROME_DRIVER_PATH);
+        Log.info("Setting up chrome browser using web driver manager");
+        try {
+            WebDriverManager.chromedriver().setup();
+        } catch (Exception e) {
+            Log.error("Exception occurred while setting up chrome driver with web driver manager");
+            Log.error(e.getMessage());
+        }
         return new ChromeDriver();
     }
 
