@@ -13,8 +13,6 @@ public enum Configuration {
     private String PWD = "auto";
     private String ROOT_DIR = System.getProperty("user.dir") + File.separator;
     private String DRIVERS_DIR = ROOT_DIR + "drivers" + File.separator;
-    public String FIREFOX_DRIVER_PATH = OSUtils.modifyForWindows(DRIVERS_DIR + "geckodriver");
-    public String CHROME_DRIVER_PATH = OSUtils.modifyForWindows(DRIVERS_DIR + "chromedriver");
     private String FILES_DIR = ROOT_DIR + "files" + File.separator;
     private String SCREENSHOTS_DIR = ROOT_DIR + "screenshots" + File.separator;
     public int MAX_WAIT = 10;
