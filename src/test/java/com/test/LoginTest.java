@@ -43,10 +43,10 @@ public class LoginTest extends BaseTest {
     @Test(description = "Verify login is successful")
     public void loginTest() {
         Log.info("Verifying object is present on screen");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(logoutLink));
+        Assert.assertTrue(getAutomator().verifyObjectPresent(headAfterLogin));
         Log.info("Verifying object is clickable");
-        Assert.assertTrue(getAutomator().verifyObjectClickable(logoutLink));
+        Assert.assertTrue(getAutomator().verifyObjectClickable(headAfterLogin));
         Log.info("Verifying object is visible");
-        Assert.assertTrue(getAutomator().verifyObjectVisible(logoutLink));
+        Assert.assertTrue(getAutomator().verifyObjectVisible(headAfterLogin));
     }
 }
