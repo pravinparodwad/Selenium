@@ -10,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-
 public class LoginTest extends BaseTest {
     private static final Logger Log = LogManager.getLogger(LoginTest.class);
     public String headAfterLogin = "xpath=//h1[.='Accounts Overview']";
