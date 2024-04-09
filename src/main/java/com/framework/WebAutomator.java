@@ -189,6 +189,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element's presence, locator - "+ elementLocatorString);
             return false;
@@ -201,6 +202,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.elementToBeClickable(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element clickable, locator - "+ elementLocatorString);
             return false;
@@ -214,6 +216,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element's visibility, locator - "+ elementLocatorString);
             return false;

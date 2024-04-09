@@ -17,6 +17,9 @@ public enum Configuration {
     private String SCREENSHOTS_DIR = ROOT_DIR + "screenshots" + File.separator;
     public int MAX_WAIT = 10;
     public String colourToBlink = "green";
+    public String getROOT_DIR() {
+        return ROOT_DIR;
+    }
 
     public String getUserName() {
         return this.USER;
