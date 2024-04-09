@@ -58,13 +58,18 @@ public class AccountSummaryTest extends BaseTest {
         String billPayService = "xpath=//a[.='Bill Pay']";
         String findTransactionsService = "xpath=//a[.='Find Transactions']";
         String updateInfoService = "xpath=//a[.='Update Contact Info']";
-        String requstLoanService = "xpath=//a[.='Request Loan']";
-        Log.info("Verifying object is present on screen");
+        String requstLoanService = "xpath=//div[.='Request Loan']";
+        Log.info("Verifying object is present on screen " + openNewAccountService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(openNewAccountService));
+        Log.info("Verifying object is present on screen " + transferFundsService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(transferFundsService));
+        Log.info("Verifying object is present on screen " + billPayService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(billPayService));
+        Log.info("Verifying object is present on screen " + findTransactionsService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(findTransactionsService));
+        Log.info("Verifying object is present on screen " + updateInfoService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(updateInfoService));
+        Log.info("Verifying object is present on screen " + requstLoanService);
         Assert.assertTrue(getAutomator().verifyObjectPresent(requstLoanService));
     }
 }

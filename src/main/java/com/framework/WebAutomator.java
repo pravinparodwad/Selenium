@@ -16,6 +16,15 @@ import org.testng.Assert;
 
 public class WebAutomator {
     private static final Logger Log = LogManager.getLogger(WebAutomator.class);
+
+    public WebDriver getDriver() {
+        return this.driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
+    }
+
     private WebDriver driver;
     private WebDriverWait waiter;
     private Configuration conf = Configuration.INSTANCE;
