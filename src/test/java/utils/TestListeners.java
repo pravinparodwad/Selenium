@@ -52,7 +52,7 @@ public class TestListeners implements ITestListener {
         try {
             extentTest.get().fail("<b><font color=red>" + "Screenshot of failure" + "</font></b>", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
         } catch (IOException e) {
-            extentTest.get().fail("Exception occurred while capturing screenshot hence cannot attach it");
+            throw new RuntimeException(e);
         }
 
         String logtext = "<b> Test method " + result.getMethod().getMethodName() + " failed </b>";
