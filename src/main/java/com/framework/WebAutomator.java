@@ -16,6 +16,15 @@ import org.testng.Assert;
 
 public class WebAutomator {
     private static final Logger Log = LogManager.getLogger(WebAutomator.class);
+
+    public WebDriver getDriver() {
+        return this.driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
+    }
+
     private WebDriver driver;
     private WebDriverWait waiter;
     private Configuration conf = Configuration.INSTANCE;
@@ -189,6 +198,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element's presence, locator - "+ elementLocatorString);
             return false;
@@ -201,6 +211,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.elementToBeClickable(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element clickable, locator - "+ elementLocatorString);
             return false;
@@ -214,6 +225,7 @@ public class WebAutomator {
         try {
             UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
+            highlightUiElement(elementToBeVerified);
         } catch (Exception e) {
             Log.error("Exception occurred while verifying element's visibility, locator - "+ elementLocatorString);
             return false;

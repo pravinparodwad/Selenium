@@ -21,11 +21,11 @@ public class BaseTest {
         Log.info("Getting configuration object");
         return conf;
     }
-    protected WebAutomator getAutomator() {
+    public WebAutomator getAutomator() {
         Log.info("Inside getter of WebAutomator");
         return this.automator;
     }
-    protected void setAutomator(WebAutomator automator) {
+    public void setAutomator(WebAutomator automator) {
         Log.info("Inside setter of WebAutomator");
         this.automator = automator;
     }

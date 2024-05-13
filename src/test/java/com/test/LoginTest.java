@@ -1,5 +1,6 @@
 package com.test;
 
+import com.aventstack.extentreports.Status;
 import com.framework.Browser;
 import com.framework.InvalidAttributeForUiElement;
 import com.framework.UiElement;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
 
 public class LoginTest extends BaseTest {
     private static final Logger Log = LogManager.getLogger(LoginTest.class);
@@ -38,13 +40,13 @@ public class LoginTest extends BaseTest {
         logOut.click();
         automator.close();
     }
-    @Test
+    @Test(description = "Verify login is successful")
     public void loginTest() {
         Log.info("Verifying object is present on screen");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(headAfterLogin));
+        Assert.assertTrue(getAutomator().verifyObjectPresent(logoutLink));
         Log.info("Verifying object is clickable");
-        Assert.assertTrue(getAutomator().verifyObjectClickable(headAfterLogin));
+        Assert.assertTrue(getAutomator().verifyObjectClickable(logoutLink));
         Log.info("Verifying object is visible");
-        Assert.assertTrue(getAutomator().verifyObjectVisible(headAfterLogin));
+        Assert.assertTrue(getAutomator().verifyObjectVisible(logoutLink));
     }
 }
