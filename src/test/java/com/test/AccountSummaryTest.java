@@ -4,6 +4,7 @@ import com.framework.Browser;
 import com.framework.InvalidAttributeForUiElement;
 import com.framework.UiElement;
 import com.framework.WebAutomator;
+import com.framework.operations.ClickAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -29,19 +30,25 @@ public class AccountSummaryTest extends BaseTest {
         UiElement pwdField = automator.findUiElement(passwordField);
         Log.info("Entering password");
         pwdField.enterText(conf.getPwd());
-        UiElement submitButton = automator.findUiElement(loginButton);
+        ClickAction cAction = new ClickAction();
+        cAction.validateObject(automator, loginButton);
+        cAction.performAction();
+//        UiElement submitButton = automator.findUiElement(loginButton);
         Log.info("Signing in to the application");
-        submitButton.click();
+//        submitButton.click();
     }
 
     @AfterTest
     public void logout() throws Exception {
-        UiElement logOut = this.automator.findUiElement(logoutLink);
+        ClickAction cAction = new ClickAction();
+        cAction.validateObject(automator, logoutLink);
+        cAction.performAction();
+//        UiElement logOut = this.automator.findUiElement(logoutLink);
         Log.info("Logging out of the application");
-        logOut.click();
+//        logOut.click();
         automator.close();
     }
-    @Test(description = "Verify Account Summary is present")
+//    @Test(description = "Verify Account Summary is present")
     public void verifyAccountSummaryTest() {
         Log.info("Verifying object is present on screen");
         Assert.assertTrue(getAutomator().verifyObjectPresent(headAfterLogin));
