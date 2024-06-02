@@ -6,6 +6,8 @@ import com.framework.InvalidAttributeForUiElement;
 import com.framework.WebAutomator;
 import com.framework.operations.ClickAction;
 import com.framework.operations.EnterTextAction;
+import com.framework.operations.VerifyElementDisplayedAction;
+import com.framework.operations.VerifyElementPresentAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -44,9 +46,11 @@ public class AccountSummaryTest extends BaseTest {
         String myAccountDropDown = "xpath=//span[.='My Account']/parent::a";
         String logoutLink = "xpath=//ul/li/a[.='Logout']";
         Log.info("Logging out of the application");
-        getAutomator().verifyObjectVisible(myAccountDropDown);
+        new VerifyElementDisplayedAction(getAutomator(), myAccountDropDown).performAction();
+//        getAutomator().verifyObjectVisible(myAccountDropDown);
         new ClickAction(automator, myAccountDropDown).performAction();
-        getAutomator().verifyObjectVisible(logoutLink);
+        new VerifyElementDisplayedAction(getAutomator(), logoutLink).performAction();
+//        getAutomator().verifyObjectVisible(logoutLink);
         new ClickAction(automator, logoutLink).performAction();
         automator.close();
     }
@@ -59,16 +63,20 @@ public class AccountSummaryTest extends BaseTest {
         String wishListService = "xpath=//aside[@id='column-right']//a[.='Wish List']";
 
         Log.info("Verifying object is present on screen");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(myAccountService));
+        new VerifyElementPresentAction(getAutomator(), myAccountService).performAction();
+//        Assert.assertTrue(getAutomator().verifyObjectPresent(myAccountService));
         Log.info("Verifying object is clickable");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(editAccountService));
+        new VerifyElementDisplayedAction(getAutomator(), editAccountService).performAction();
+//        Assert.assertTrue(getAutomator().verifyObjectPresent(editAccountService));
         Log.info("Verifying object is visible");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(passwordService));
-
+        new VerifyElementPresentAction(getAutomator(), passwordService).performAction();
+//        Assert.assertTrue(getAutomator().verifyObjectPresent(passwordService));
         Log.info("Verifying object is clickable");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(addressBookService));
+        new VerifyElementPresentAction(getAutomator(), addressBookService).performAction();
+//        Assert.assertTrue(getAutomator().verifyObjectPresent(addressBookService));
         Log.info("Verifying object is visible");
-        Assert.assertTrue(getAutomator().verifyObjectPresent(wishListService));
+        new VerifyElementPresentAction(getAutomator(), wishListService).performAction();
+//        Assert.assertTrue(getAutomator().verifyObjectPresent(wishListService));
     }
 //
 //    @Test(description = "Verify account services")

@@ -4,7 +4,6 @@ import java.util.function.Predicate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 
 public class AbstractAction {
     private static final Logger Log = LogManager.getLogger(AbstractAction.class);
@@ -12,6 +11,7 @@ public class AbstractAction {
     public UiElement validateObject(WebAutomator automator, String... sParams) {
         Log.info("Start of validating object");
         String sLocator = sParams[0];
+        automator.waitUntilDomReady();
         UiElement uiElement = automator.findUiElement(sLocator);
         Predicate<UiElement> verifyElementisNotNull = element -> element != null;
         if(verifyElementisNotNull.test(uiElement))

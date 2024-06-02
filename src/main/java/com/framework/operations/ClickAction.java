@@ -7,6 +7,7 @@ import com.framework.UiElement;
 import com.framework.WebAutomator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ClickAction extends AbstractAction implements Actionable {
     private static final Logger Log = LogManager.getLogger(ClickAction.class);
@@ -23,13 +24,14 @@ public class ClickAction extends AbstractAction implements Actionable {
     @Override
     public void performAction() {
         this.elementToClick = super.validateObject(this.automator, this.elementLocator);
-        Log.info("Start of performing ClickAction");
+        Log.info("Start of ClickAction's perform action method");
         try {
+            this.elementToClick = this.automator.wait(ExpectedConditions.elementToBeClickable(elementToClick.getWrappedElement()));
             this.elementToClick.getWrappedElement().click();
             this.automator.waitUntilDomReady();
-            Log.info("Performing ClickAction is successful");
+            Log.info("Performing ClickAction is successful for locator {}", this.elementLocator);
         } catch (Exception e) {
-            Log.error("Error occured while performing ClickAction");
+            Log.error("Error occurred while performing ClickAction with locator {}", this.elementLocator);
         }
     }
 }

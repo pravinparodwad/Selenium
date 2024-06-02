@@ -125,12 +125,12 @@ public class WebAutomator {
         return foundElement;
     }
 
-    private UiElement wait(ExpectedCondition<WebElement> condition, By by) {
+    public UiElement wait(ExpectedCondition<WebElement> condition, By by) {
         UiElement element = new UiElement(this, this.waiter.until(condition), by);
         return element;
     }
 
-    private UiElement wait(ExpectedCondition<WebElement> condition) {
+    public UiElement wait(ExpectedCondition<WebElement> condition) {
         UiElement element = new UiElement(this, this.waiter.until(condition));
         return element;
     }
@@ -161,7 +161,7 @@ public class WebAutomator {
 
     public void waitUntilDomReady(){
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -200,47 +200,4 @@ public class WebAutomator {
     public void verifyMessage(String messageToVerify) {
         Assert.assertTrue((this.waitUntilClickable(By.xpath("//*[contains(text(),'" + messageToVerify + "')]")) != null));
     }
-
-    public boolean verifyObjectPresent(String elementLocatorString) {
-        Log.info("Inside verify object present method");
-        UiElement elementToBeVerified = null;
-        try {
-            elementToBeVerified = this.findUiElement(elementLocatorString);
-            elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
-            highlightUiElement(elementToBeVerified);
-        } catch (Exception e) {
-            Log.error("Exception occurred while verifying element's presence, locator - "+ elementLocatorString);
-            return false;
-        }
-        Log.info("Successfully found and verified element's presence");
-        return true;
-    }
-    public boolean verifyObjectClickable(String elementLocatorString) {
-        Log.info("Inside verify object clickable method");
-        try {
-            UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
-            elementToBeVerified = this.wait(ExpectedConditions.elementToBeClickable(elementToBeVerified.getWrappedElement()));
-            highlightUiElement(elementToBeVerified);
-        } catch (Exception e) {
-            Log.error("Exception occurred while verifying element clickable, locator - "+ elementLocatorString);
-            return false;
-        }
-        Log.info("Successfully found and verified element is clickable");
-        return true;
-        }
-
-    public boolean verifyObjectVisible(String elementLocatorString) {
-        Log.info("Inside verify object visible method");
-        try {
-            UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
-            elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
-            highlightUiElement(elementToBeVerified);
-        } catch (Exception e) {
-            Log.error("Exception occurred while verifying element's visibility, locator - "+ elementLocatorString);
-            return false;
-        }
-        Log.info("Successfully found and verified element's visibility'");
-        return true;
-    }
-
 }
