@@ -13,7 +13,7 @@ public class ExtentManager {
     private static ExtentReports extent;
     public static ExtentReports getInstance(){
         String reportFileName = getReportName();
-        String reportDirectory = Configuration.INSTANCE.getROOT_DIR() + "ExtentReports/";
+        String reportDirectory = Configuration.INSTANCE.getROOT_DIR() + "target/ExtentReports/";
         new File(reportDirectory).mkdirs();
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportDirectory + reportFileName);
         htmlReporter.config().setEncoding("utf-8");

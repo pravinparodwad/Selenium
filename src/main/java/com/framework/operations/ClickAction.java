@@ -1,37 +1,35 @@
 package com.framework.operations;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.framework.AbstractAction;
 import com.framework.Actionable;
 import com.framework.UiElement;
 import com.framework.WebAutomator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.function.Predicate;
-
-public class ClickAction implements Actionable {
+public class ClickAction extends AbstractAction implements Actionable {
     private static final Logger Log = LogManager.getLogger(ClickAction.class);
-    UiElement elementToClick = null;
-    @Override
-    public void validateObject(WebAutomator automator, String... sParams) {
-        Log.info("Start of validating object for ClickAction");
-        String sLocator = sParams[0];
-        this.elementToClick = automator.findUiElement(sLocator);
-        Predicate<UiElement> verifyElementisNotNull = uiElement -> uiElement != null;
-        if(verifyElementisNotNull.test(this.elementToClick))
-            Log.info("Validating object for ClickAction is successful");
-        else
-            Log.error("Error occured while validating object for ClickAction");
+    public ExtentTest extentReportLogger;
+    private WebAutomator automator;
+    private String elementLocator;
+    private UiElement elementToClick;
+
+    public ClickAction(WebAutomator automator, String elementToClick) {
+        this.elementLocator = elementToClick;
+        this.automator = automator;
     }
 
     @Override
     public void performAction() {
+        this.elementToClick = super.validateObject(this.automator, this.elementLocator);
         Log.info("Start of performing ClickAction");
         try {
             this.elementToClick.getWrappedElement().click();
+            this.automator.waitUntilDomReady();
             Log.info("Performing ClickAction is successful");
         } catch (Exception e) {
             Log.error("Error occured while performing ClickAction");
         }
-
     }
 }

@@ -61,7 +61,6 @@ public class WebAutomator {
     }
 
     private WebDriver createChromeDriver() {
-//        System.setProperty("webdriver.chrome.driver", conf.CHROME_DRIVER_PATH);
         Log.info("Setting up chrome browser using web driver manager");
         try {
             WebDriverManager.chromedriver().setup();
@@ -160,19 +159,28 @@ public class WebAutomator {
         return element;
     }
 
+    public void waitUntilDomReady(){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        this.waiter.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
     public void goTo(String url) {
         this.driver.get(url);
+        Log.info("Navigated to url successfully: " + url);
     }
 
     public void goToAndVerify(String url, String locatorToVerify) {
         this.goTo(url);
-        //return this.findUiElement(locatorToVerify);
         Assert.assertTrue(this.findUiElement(locatorToVerify) != null);
     }
 
     public void close() {
-        Log.info("Closing the browser with web driver quit");
         this.driver.quit();
+        Log.info("Closed the browser with web driver quit");
     }
 
     public void closeAllWindows() {
@@ -195,8 +203,9 @@ public class WebAutomator {
 
     public boolean verifyObjectPresent(String elementLocatorString) {
         Log.info("Inside verify object present method");
+        UiElement elementToBeVerified = null;
         try {
-            UiElement elementToBeVerified = this.findUiElement(elementLocatorString);
+            elementToBeVerified = this.findUiElement(elementLocatorString);
             elementToBeVerified = this.wait(ExpectedConditions.visibilityOf(elementToBeVerified.getWrappedElement()));
             highlightUiElement(elementToBeVerified);
         } catch (Exception e) {

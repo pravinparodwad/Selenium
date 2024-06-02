@@ -10,7 +10,6 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.framework.Configuration;
 import com.framework.WebAutomator;
 import com.test.BaseTest;
-import com.test.LoginTest;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +27,7 @@ import java.util.Date;
 public class TestListeners implements ITestListener {
     private static final Logger Log = LogManager.getLogger(WebAutomator.class);
     private static ExtentReports extentReport = ExtentManager.getInstance();
-    private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
+    public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
     @Override
     public void onTestStart(ITestResult result) {
         ExtentTest test = extentReport.createTest(result.getTestClass().getName() + " - " + result.getMethod().getMethodName());
@@ -48,6 +47,14 @@ public class TestListeners implements ITestListener {
         extentTest.get().fail("<details><summary><b><font-color=red>" + "Exception occurred, click to see details: " + "</font></b></summary>" + exceptionMessage.replace(",", "<br>") + "</details>");
 
         WebAutomator automator = ((BaseTest) result.getInstance()).getAutomator();
+//        WebAutomator automator = null;
+//        try {
+//            automator = ((WebAutomator) result.getTestClass().getRealClass().getDeclaredField("automator").get(result.getInstance()));
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        } catch (NoSuchFieldException e) {
+//            throw new RuntimeException(e);
+//        }
         String path = takeScreenshot(automator, result.getMethod().getMethodName());
         try {
             extentTest.get().fail("<b><font color=red>" + "Screenshot of failure" + "</font></b>", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
