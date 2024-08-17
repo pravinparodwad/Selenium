@@ -8,9 +8,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public enum Configuration {
     INSTANCE;
-    private String APP_URL = "https://parabank.parasoft.com/parabank/index.htm";
-    private String USER = "auto";
-    private String PWD = "auto";
+    private String APP_URL = "https://demo.opencart.com/en-gb?route=account/login";
+    private String USER = "pravin.parodwad@gmail.com";
+    private String PWD = "Monty#007";
     private String ROOT_DIR = System.getProperty("user.dir") + File.separator;
     private String DRIVERS_DIR = ROOT_DIR + "drivers" + File.separator;
     private String FILES_DIR = ROOT_DIR + "files" + File.separator;
