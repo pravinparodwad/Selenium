@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public enum Configuration {
     INSTANCE;
-    private String APP_URL = "http://localhost/opencartsite/index.php?route=account/login&language=en-gb";
+    private String APP_URL = "https://demo.opencart.com/en-gb?route=account/login";
     private String USER = "pravin.parodwad@gmail.com";
     private String PWD = "Monty#007";
     private String ROOT_DIR = System.getProperty("user.dir") + File.separator;
