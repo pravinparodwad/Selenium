@@ -1,10 +1,11 @@
 package com.framework;
 
-import org.openqa.selenium.WebElement;
+import lombok.Getter;
 
 public class InvalidAttributeForUiElement extends Exception {
-    private String attr;
-    private UiElement element;
+    @Getter
+    private final String attr;
+    private final UiElement element;
     private static final long serialVersionUID = 1L;
 
     public InvalidAttributeForUiElement(UiElement element, String attr) {
@@ -17,10 +18,9 @@ public class InvalidAttributeForUiElement extends Exception {
         this.attr = attr;
     }
 
-    public String getAttr() {
-        return attr;
-    }
-
+    /**
+     * @return the web element that threw the exception
+     */
     public UiElement getWebElement() {
         return element;
     }
