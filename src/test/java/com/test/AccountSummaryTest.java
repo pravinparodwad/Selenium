@@ -10,7 +10,6 @@ import com.framework.operations.VerifyElementDisplayedAction;
 import com.framework.operations.VerifyElementPresentAction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -29,7 +28,7 @@ public class AccountSummaryTest extends BaseTest {
         Log.info("****************** Start of test case ***********************");
         automator = new WebAutomator(Browser.CHROME);
         setAutomator(automator);
-        Log.info("Navigating to application url: " + conf.getAPP_URL());
+        Log.info("Navigating to application url: {}", conf.getAPP_URL());
         automator.goToAndVerify(conf.getAPP_URL(), usernameField);
 
         Log.info("Entering username");
@@ -47,10 +46,8 @@ public class AccountSummaryTest extends BaseTest {
         String logoutLink = "xpath=//ul/li/a[.='Logout']";
         Log.info("Logging out of the application");
         new VerifyElementDisplayedAction(getAutomator(), myAccountDropDown).performAction();
-//        getAutomator().verifyObjectVisible(myAccountDropDown);
         new ClickAction(automator, myAccountDropDown).performAction();
         new VerifyElementDisplayedAction(getAutomator(), logoutLink).performAction();
-//        getAutomator().verifyObjectVisible(logoutLink);
         new ClickAction(automator, logoutLink).performAction();
         automator.close();
     }

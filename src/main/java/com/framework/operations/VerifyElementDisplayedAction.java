@@ -10,22 +10,26 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class VerifyElementDisplayedAction extends AbstractAction implements Actionable {
     private static final Logger Log = LogManager.getLogger(VerifyElementDisplayedAction.class);
-    private WebAutomator automator;
-    private String elementLocator;
-    private UiElement elementToVerify;
+    private final WebAutomator automator;
+    private final String elementLocator;
 
     public VerifyElementDisplayedAction(WebAutomator automator, String elementLocator) {
         this.elementLocator = elementLocator;
         this.automator = automator;
     }
 
+    /**
+     * Perform the action of verifying if the element is visible on the page
+     */
     @Override
     public void performAction() {
-        this.elementToVerify = super.validateObject(this.automator, this.elementLocator);
+        UiElement elementToVerify = super.validateObject(this.automator, this.elementLocator);
         Log.info("Inside VerifyElementDisplayedAction's perform action method");
         try {
-            this.elementToVerify = this.automator.wait(ExpectedConditions.visibilityOf(this.elementToVerify.getWrappedElement()));
-            if(this.elementToVerify.getWrappedElement().isDisplayed()){
+            // Wait until the element is visible
+            elementToVerify = this.automator.wait(ExpectedConditions.visibilityOf(elementToVerify.getWrappedElement()));
+            // Check if the element is displayed
+            if(elementToVerify.getWrappedElement().isDisplayed()){
                 Log.info("Element with locator {} is displayed on UI", this.elementLocator);
             }
             else{
